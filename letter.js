@@ -7,11 +7,14 @@ class Letter {
         this.isSolved = isSolved
     }
 
+    checkForMatch(letter) {
+        let wasSolved = this.isSolved
+        return (this.isSolved = letter === this.letter) && !wasSolved
+    }
+
     toString() {
         return this.isSolved ? this.letter : '_'
     }
-
-    checkForMatch(letter) {
-        this.isSolved = letter === this.letter
-    }
 }
+
+module.exports = Letter

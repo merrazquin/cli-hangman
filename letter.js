@@ -3,15 +3,19 @@
  */
 class Letter {
     constructor(letter, isSolved = false) {
-        this.letter = letter
-        this.isSolved = isSolved
+        // if the letter is a space, convert it to a hyphen and consider it solved
+        this.letter = letter === ' ' ? '-' : letter
+        this.isSolved = this.letter === '-' || isSolved
     }
 
+    // only return true if the letter was not previously solved
     checkForMatch(letter) {
-        let wasSolved = this.isSolved
-        return (this.isSolved = letter === this.letter) && !wasSolved
+        return !this.isSolved && (this.isSolved = letter.toLowerCase() === this.letter.toLowerCase())
     }
 
+    /**
+     * Display the letter if solved, otherwise, display an underscore
+     */
     toString() {
         return this.isSolved ? this.letter : '_'
     }
